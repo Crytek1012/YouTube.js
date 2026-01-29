@@ -87,7 +87,8 @@
     "bundle:cf-worker": "esbuild ./dist/src/platform/cf-worker.js --banner:js=\"/* eslint-disable */\" --bundle --sourcemap --target=es2020 --keep-names --format=esm --define:global=globalThis --conditions=module --outfile=./bundle/cf-worker.js --platform=node",
     "build:docs": "typedoc",
     "prepare": "npm run build",
-    "watch": "tspc --watch"
+    "watch": "tspc --watch",
+    "postinstall": "cd node_modules/youtubei.js && npm install && npm run build"
   },
   "repository": {
     "type": "git",
