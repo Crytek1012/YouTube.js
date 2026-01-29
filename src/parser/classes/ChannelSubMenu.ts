@@ -15,11 +15,15 @@ export default class ChannelSubMenu extends YTNode {
 
   constructor(data: RawNode) {
     super();
-    this.content_type_sub_menu_items = data.contentTypeSubMenuItems.map((item: RawNode) => ({
-      endpoint: new NavigationEndpoint(item.navigationEndpoint || item.endpoint),
-      selected: item.selected,
-      title: item.title
-    }));
-    this.sort_setting = Parser.parseItem(data.sortSetting);
+    this.content_type_sub_menu_items = Array.isArray(data.contentTypeSubMenuItems)
+      ? data.contentTypeSubMenuItems.map((item: RawNode) => ({
+        endpoint: new NavigationEndpoint(item.navigationEndpoint || item.endpoint),
+        selected: item.selected,
+        title: item.title
+      }))
+      : [];
+    this.sort_setting = data.sortSetting
+      ? Parser.parseItem(data.sortSetting)
+      : null;
   }
 }

@@ -528,6 +528,7 @@ export { default as VideoMetadataCarouselView } from './classes/VideoMetadataCar
 export { default as VideoOwner } from './classes/VideoOwner.js';
 export { default as VideoPrimaryInfo } from './classes/VideoPrimaryInfo.js';
 export { default as VideoSecondaryInfo } from './classes/VideoSecondaryInfo.js';
+export { default as VideoSummaryContentView } from './classes/VideoSummaryContentView.js';
 export { default as VideoViewCount } from './classes/VideoViewCount.js';
 export { default as ViewCountFactoid } from './classes/ViewCountFactoid.js';
 export { default as WatchCardCompactVideo } from './classes/WatchCardCompactVideo.js';

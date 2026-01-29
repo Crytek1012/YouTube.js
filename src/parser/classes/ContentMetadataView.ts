@@ -23,14 +23,18 @@ export default class ContentMetadataView extends YTNode {
 
   constructor(data: RawNode) {
     super();
-    this.metadata_rows = data.metadataRows.map((row: RawNode) => ({
-      metadata_parts: row.metadataParts?.map((part: RawNode) => ({
-        text: part.text ? Text.fromAttributed(part.text) : null,
-        avatar_stack: Parser.parseItem(part.avatarStack, AvatarStackView),
-        enable_truncation: data.enableTruncation
-      })),
-      badges: Parser.parseArray(row.badges, BadgeView)
-    }));
-    this.delimiter = data.delimiter;
+    this.metadata_rows = Array.isArray(data.metadataRows)
+      ? data.metadataRows.map((row: RawNode) => ({
+        metadata_parts: Array.isArray(row.metadataParts)
+          ? row.metadataParts.map((part: RawNode) => ({
+            text: part.text ? Text.fromAttributed(part.text) : null,
+            avatar_stack: Parser.parseItem(part.avatarStack, AvatarStackView),
+            enable_truncation: data.enableTruncation
+          }))
+          : [],
+        badges: Parser.parseArray(row.badges, BadgeView)
+      }))
+      : [];
+    this.delimiter = data.delimiter ?? ' • ';
   }
 }
